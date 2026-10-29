@@ -8,6 +8,8 @@ If you leave an external backup disk connected, you have to remember to eject it
 
 The disk stays connected while ejected. Choose **Back Up Now** from the menu bar to mount it and start a backup; it is ejected again when the backup finishes.
 
+![Screenshot 1](screenshots/screenshot-1.png)
+
 ## Requirements
 
 macOS 13 or later.
