@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>TimeMachineEjector</title>
+        <item>
+            <title>1.0.0</title>
+            <pubDate>Fri, 30 Oct 2026 03:37:36 +0900</pubDate>
+            <sparkle:version>1</sparkle:version>
+            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[First release.
+
+- Ejects your Time Machine backup disk automatically when a backup and its cleanup finish
+- Shows the backup disk status in the menu bar: Backing Up with progress, Connected, Ejected or Not Connected
+- Back Up Now mounts the ejected disk and starts a backup
+- Launch at Login and automatic updates
+- Universal app for Apple silicon and Intel Macs
+
+Requires macOS 13 or later.
+]]></description>
+            <enclosure url="https://github.com/wata/TimeMachineEjector/releases/download/1.0.0/TimeMachineEjector-1.0.0.zip" length="3756140" type="application/octet-stream" sparkle:edSignature="yb+jk0NpO/m8EjU9gYDp1qiXJCrRYCxA8DtSThRhl5RUDIUdD8USparyAIrbsy7DhxfpQqQTKQvq6Or7GEPTAg=="/>
+        </item>
+    </channel>
+</rss>
