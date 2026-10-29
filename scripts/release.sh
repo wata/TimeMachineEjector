@@ -84,8 +84,9 @@ DERIVED_DATA="build/release"
 BUILT_APP="$DERIVED_DATA/Build/Products/Release/TimeMachineEjector.app"
 SPARKLE_BIN="$DERIVED_DATA/SourcePackages/artifacts/sparkle/Sparkle/bin"
 APPCAST="appcast.xml"
-# generate_appcast は渡したディレクトリ内の全 zip を項目にするので、リリースする zip だけを貯める
-ARCHIVES_DIR="dist/releases"
+# generate_appcast は渡したディレクトリ内の全 zip の項目を --download-url-prefix で作り直すので、
+# 過去の版の URL を今回の版の場所に書き換えないよう、版ごとのディレクトリにする（既存の項目は appcast から引き継がれる）
+ARCHIVES_DIR="dist/releases/$VERSION"
 ZIP="$ARCHIVES_DIR/TimeMachineEjector-$VERSION.zip"
 # Sparkle の署名鍵は AudioAnchor と共用している（キーチェーンの account 名）
 SPARKLE_ACCOUNT="AudioAnchor"

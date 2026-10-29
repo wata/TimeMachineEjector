@@ -28,7 +28,7 @@
 
 Requires macOS 13 or later.
 ]]></description>
-            <enclosure url="https://github.com/wata/TimeMachineEjector/releases/download/1.0.1/TimeMachineEjector-1.0.0.zip" length="3756140" type="application/octet-stream" sparkle:edSignature="yb+jk0NpO/m8EjU9gYDp1qiXJCrRYCxA8DtSThRhl5RUDIUdD8USparyAIrbsy7DhxfpQqQTKQvq6Or7GEPTAg=="/>
+            <enclosure url="https://github.com/wata/TimeMachineEjector/releases/download/1.0.0/TimeMachineEjector-1.0.0.zip" length="3756140" type="application/octet-stream" sparkle:edSignature="yb+jk0NpO/m8EjU9gYDp1qiXJCrRYCxA8DtSThRhl5RUDIUdD8USparyAIrbsy7DhxfpQqQTKQvq6Or7GEPTAg=="/>
         </item>
     </channel>
 </rss>
