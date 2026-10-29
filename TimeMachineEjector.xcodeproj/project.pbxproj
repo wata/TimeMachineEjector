@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5A30BF66270A08C9000A97E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A30BF65270A08C9000A97E2 /* AppDelegate.swift */; };
 		5A30BF68270A08CC000A97E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A30BF67270A08CC000A97E2 /* Assets.xcassets */; };
+		5AA1C0DE0000000000000002 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 5AA1C0DE0000000000000001 /* AppIcon.icon */; };
 		5A30BF6B270A08CC000A97E2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A30BF69270A08CC000A97E2 /* MainMenu.xib */; };
 		5A30BF76270A08CC000A97E2 /* TimeMachineEjectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A30BF75270A08CC000A97E2 /* TimeMachineEjectorTests.swift */; };
 		5A30BF80270A08CC000A97E2 /* TimeMachineEjectorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A30BF7F270A08CC000A97E2 /* TimeMachineEjectorUITests.swift */; };
@@ -41,6 +42,7 @@
 		5A30BF62270A08C9000A97E2 /* TimeMachineEjector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeMachineEjector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A30BF65270A08C9000A97E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A30BF67270A08CC000A97E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5AA1C0DE0000000000000001 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		5A30BF6A270A08CC000A97E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		5A30BF6C270A08CC000A97E2 /* TimeMachineEjector.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimeMachineEjector.entitlements; sourceTree = "<group>"; };
 		5A30BF71270A08CC000A97E2 /* TimeMachineEjectorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeMachineEjectorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +111,7 @@
 				5AC4DA712711E08000B9F3B2 /* Volume.swift */,
 				5AC4DA772715E59100B9F3B2 /* DADisk+Extensions.swift */,
 				5A30BF67270A08CC000A97E2 /* Assets.xcassets */,
+				5AA1C0DE0000000000000001 /* AppIcon.icon */,
 				5A30BF69270A08CC000A97E2 /* MainMenu.xib */,
 				5A30BF6C270A08CC000A97E2 /* TimeMachineEjector.entitlements */,
 			);
@@ -243,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A30BF68270A08CC000A97E2 /* Assets.xcassets in Resources */,
+				5AA1C0DE0000000000000002 /* AppIcon.icon in Resources */,
 				5A30BF6B270A08CC000A97E2 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
