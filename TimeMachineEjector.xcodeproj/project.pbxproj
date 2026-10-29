@@ -14,11 +14,13 @@
 		5A30BF76270A08CC000A97E2 /* TimeMachineEjectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A30BF75270A08CC000A97E2 /* TimeMachineEjectorTests.swift */; };
 		5A30BF80270A08CC000A97E2 /* TimeMachineEjectorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A30BF7F270A08CC000A97E2 /* TimeMachineEjectorUITests.swift */; };
 		5A30BF82270A08CC000A97E2 /* TimeMachineEjectorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A30BF81270A08CC000A97E2 /* TimeMachineEjectorUITestsLaunchTests.swift */; };
-		5A30BF93270A096D000A97E2 /* BackupMonitor in Frameworks */ = {isa = PBXBuildFile; productRef = 5A30BF92270A096D000A97E2 /* BackupMonitor */; };
-		5AC4DA722711E08000B9F3B2 /* Volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC4DA712711E08000B9F3B2 /* Volume.swift */; };
+		5AA1C0DE0000000000000004 /* BackupMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA1C0DE0000000000000003 /* BackupMonitor.swift */; };
+		5AA1C0DE000000000000000A /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA1C0DE0000000000000009 /* Command.swift */; };
+		5AA1C0DE000000000000000C /* Disk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA1C0DE000000000000000B /* Disk.swift */; };
+		5AA1C0DE000000000000000E /* BackupDiskStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA1C0DE000000000000000D /* BackupDiskStatus.swift */; };
+		5AA1C0DE0000000000000008 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 5AA1C0DE0000000000000007 /* Sparkle */; };
 		5AC4DA7427149B2200B9F3B2 /* TimeMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC4DA7327149B2200B9F3B2 /* TimeMachine.swift */; };
 		5AC4DA7627149E1200B9F3B2 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC4DA7527149E1200B9F3B2 /* Settings.swift */; };
-		5AC4DA782715E59200B9F3B2 /* DADisk+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC4DA772715E59100B9F3B2 /* DADisk+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,10 +52,13 @@
 		5A30BF7B270A08CC000A97E2 /* TimeMachineEjectorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeMachineEjectorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A30BF7F270A08CC000A97E2 /* TimeMachineEjectorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineEjectorUITests.swift; sourceTree = "<group>"; };
 		5A30BF81270A08CC000A97E2 /* TimeMachineEjectorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineEjectorUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		5AC4DA712711E08000B9F3B2 /* Volume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Volume.swift; sourceTree = "<group>"; };
 		5AC4DA7327149B2200B9F3B2 /* TimeMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachine.swift; sourceTree = "<group>"; };
 		5AC4DA7527149E1200B9F3B2 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		5AC4DA772715E59100B9F3B2 /* DADisk+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DADisk+Extensions.swift"; sourceTree = "<group>"; };
+		5AA1C0DE0000000000000003 /* BackupMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupMonitor.swift; sourceTree = "<group>"; };
+		5AA1C0DE0000000000000009 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		5AA1C0DE000000000000000B /* Disk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disk.swift; sourceTree = "<group>"; };
+		5AA1C0DE000000000000000D /* BackupDiskStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupDiskStatus.swift; sourceTree = "<group>"; };
+		5AA1C0DE0000000000000005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A30BF93270A096D000A97E2 /* BackupMonitor in Frameworks */,
+				5AA1C0DE0000000000000008 /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,12 +113,15 @@
 				5A30BF65270A08C9000A97E2 /* AppDelegate.swift */,
 				5AC4DA7527149E1200B9F3B2 /* Settings.swift */,
 				5AC4DA7327149B2200B9F3B2 /* TimeMachine.swift */,
-				5AC4DA712711E08000B9F3B2 /* Volume.swift */,
-				5AC4DA772715E59100B9F3B2 /* DADisk+Extensions.swift */,
+				5AA1C0DE0000000000000003 /* BackupMonitor.swift */,
+				5AA1C0DE0000000000000009 /* Command.swift */,
+				5AA1C0DE000000000000000B /* Disk.swift */,
+				5AA1C0DE000000000000000D /* BackupDiskStatus.swift */,
 				5A30BF67270A08CC000A97E2 /* Assets.xcassets */,
 				5AA1C0DE0000000000000001 /* AppIcon.icon */,
 				5A30BF69270A08CC000A97E2 /* MainMenu.xib */,
 				5A30BF6C270A08CC000A97E2 /* TimeMachineEjector.entitlements */,
+				5AA1C0DE0000000000000005 /* Info.plist */,
 			);
 			path = TimeMachineEjector;
 			sourceTree = "<group>";
@@ -152,7 +160,7 @@
 			);
 			name = TimeMachineEjector;
 			packageProductDependencies = (
-				5A30BF92270A096D000A97E2 /* BackupMonitor */,
+				5AA1C0DE0000000000000007 /* Sparkle */,
 			);
 			productName = TimeMachineEjector;
 			productReference = 5A30BF62270A08C9000A97E2 /* TimeMachineEjector.app */;
@@ -227,7 +235,7 @@
 			);
 			mainGroup = 5A30BF59270A08C9000A97E2;
 			packageReferences = (
-				5A30BF91270A096D000A97E2 /* XCRemoteSwiftPackageReference "BackupMonitor" */,
+				5AA1C0DE0000000000000006 /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
 			productRefGroup = 5A30BF63270A08C9000A97E2 /* Products */;
 			projectDirPath = "";
@@ -273,10 +281,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A30BF66270A08C9000A97E2 /* AppDelegate.swift in Sources */,
-				5AC4DA722711E08000B9F3B2 /* Volume.swift in Sources */,
 				5AC4DA7627149E1200B9F3B2 /* Settings.swift in Sources */,
-				5AC4DA782715E59200B9F3B2 /* DADisk+Extensions.swift in Sources */,
 				5AC4DA7427149B2200B9F3B2 /* TimeMachine.swift in Sources */,
+				5AA1C0DE0000000000000004 /* BackupMonitor.swift in Sources */,
+				5AA1C0DE000000000000000A /* Command.swift in Sources */,
+				5AA1C0DE000000000000000C /* Disk.swift in Sources */,
+				5AA1C0DE000000000000000E /* BackupDiskStatus.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,7 +385,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -430,7 +440,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -451,6 +461,7 @@
 				DEVELOPMENT_TEAM = 49JCDB9D59;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimeMachineEjector/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -478,6 +489,7 @@
 				DEVELOPMENT_TEAM = 49JCDB9D59;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimeMachineEjector/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -508,7 +520,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.wata.TimeMachineEjectorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -533,7 +545,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.wata.TimeMachineEjectorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -631,21 +643,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5A30BF91270A096D000A97E2 /* XCRemoteSwiftPackageReference "BackupMonitor" */ = {
+		5AA1C0DE0000000000000006 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/wata/BackupMonitor";
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
+				minimumVersion = 2.10.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		5A30BF92270A096D000A97E2 /* BackupMonitor */ = {
+		5AA1C0DE0000000000000007 /* Sparkle */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5A30BF91270A096D000A97E2 /* XCRemoteSwiftPackageReference "BackupMonitor" */;
-			productName = BackupMonitor;
+			package = 5AA1C0DE0000000000000006 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
