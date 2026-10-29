@@ -4,6 +4,16 @@
         <title>TimeMachineEjector</title>
         <item>
             <title>1.0.1</title>
+            <pubDate>Fri, 30 Oct 2026 03:57:24 +0900</pubDate>
+            <sparkle:version>3</sparkle:version>
+            <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[- App icon background now uses the same green as Time Machine
+]]></description>
+            <enclosure url="https://github.com/wata/TimeMachineEjector/releases/download/1.0.1-3/TimeMachineEjector-1.0.1.zip" length="3563518" type="application/octet-stream" sparkle:edSignature="qBflZMLDqQVS+S2tLOdu+q6ISIaVAjRDpceX3enODErFQ3pdUyMBaSe8irhG9I25yEDPShDedRr2w/g11h9eAw=="/>
+        </item>
+        <item>
+            <title>1.0.1</title>
             <pubDate>Fri, 30 Oct 2026 03:53:05 +0900</pubDate>
             <sparkle:version>2</sparkle:version>
             <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
