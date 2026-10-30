@@ -114,10 +114,16 @@ final class TimeMachineEjectorTests: XCTestCase {
         XCTAssertFalse(status.canStartBackup)
     }
 
-    func testBackingUpWithoutProgress() {
+    func testBackingUpStartsAtZeroPercent() {
         let starting = TimeMachine.Status(isRunning: true, percent: -1)
         let status = BackupDiskStatus(destination: destination, status: starting, volume: mounted, didFailToEject: false)
-        XCTAssertEqual(status.title(destinationName: "Backup"), "Backup: Backing Up…")
+        XCTAssertEqual(status.title(destinationName: "Backup"), "Backup: Backing Up… 0%")
+    }
+
+    func testBackingUpKeepsLastProgressWithoutProgress() {
+        let thinning = TimeMachine.Status(isRunning: true, percent: -1)
+        let status = BackupDiskStatus(destination: destination, status: thinning, volume: mounted, didFailToEject: false, lastProgress: 100)
+        XCTAssertEqual(status.title(destinationName: "Backup"), "Backup: Backing Up… 100%")
     }
 
     func testStartingBackupWhileStillEjected() {

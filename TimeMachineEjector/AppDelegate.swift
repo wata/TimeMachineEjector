@@ -13,6 +13,8 @@ import Sparkle
 final class AppDelegate: NSObject, NSApplicationDelegate {
     // backupd が始めなかったときに「Starting Backup…」のまま残らないよう、この時間で諦める
     private static let backupStartTimeout: TimeInterval = 60
+    // メニューを開いたままでも進捗が止まって見えないよう、開いている間はこの間隔で読み直す
+    private static let menuRefreshInterval: Duration = .seconds(1)
 
     private let backupMonitor = BackupMonitor()
     private let updaterController = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
@@ -28,6 +30,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var didFailToEject = false
     // Back Up Now を押した時刻。backupd が Running になるまでの数秒、Ejected などのままに見えないよう「Starting Backup…」を出す
     private var backupRequestedAt: Date?
+    private var menuRefreshTask: Task<Void, Never>?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         setupMenu()
@@ -88,7 +91,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         let isStartingBackup = backupRequestedAt.map { Date.now.timeIntervalSince($0) < Self.backupStartTimeout } ?? false
         self.destination = destination
-        diskStatus = BackupDiskStatus(destination: destination, status: status, volume: volume, didFailToEject: didFailToEject, isStartingBackup: isStartingBackup)
+        diskStatus = BackupDiskStatus(destination: destination, status: status, volume: volume, didFailToEject: didFailToEject, isStartingBackup: isStartingBackup, lastProgress: diskStatus.progress)
         diskItem.title = diskStatus.title(destinationName: destination?.name)
         // 開いているメニューの Back Up Now の有効/無効を、更新後の状態で検証し直す
         statusItem.menu?.update()
@@ -172,11 +175,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 }
 
 extension AppDelegate: NSMenuDelegate {
-    func menuNeedsUpdate(_ menu: NSMenu) {
-        Task { [weak self] in
-            guard let self else { return }
-            await refresh()
+    func menuWillOpen(_ menu: NSMenu) {
+        menuRefreshTask?.cancel()
+        menuRefreshTask = Task { [weak self] in
+            while !Task.isCancelled {
+                guard let self else { return }
+                await refresh()
+                try? await Task.sleep(for: Self.menuRefreshInterval)
+            }
         }
+    }
+
+    func menuDidClose(_ menu: NSMenu) {
+        menuRefreshTask?.cancel()
+        menuRefreshTask = nil
     }
 }
 
