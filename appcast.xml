@@ -3,6 +3,16 @@
     <channel>
         <title>TimeMachineEjector</title>
         <item>
+            <title>1.0.2</title>
+            <pubDate>Fri, 30 Oct 2026 16:18:13 +0900</pubDate>
+            <sparkle:version>4</sparkle:version>
+            <sparkle:shortVersionString>1.0.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[- Backup progress now starts at 0% and updates live while the menu is open
+]]></description>
+            <enclosure url="https://github.com/wata/TimeMachineEjector/releases/download/1.0.2/TimeMachineEjector-1.0.2.zip" length="3566861" type="application/octet-stream" sparkle:edSignature="MKnibCrCaSGxOW7iotWRh3iyRQZNkopWJNWQhS9CQXjPyoYXF856SVlOLLuPVUQEXtdqt1dlbB1Me7gzcEH8Cw=="/>
+        </item>
+        <item>
             <title>1.0.1</title>
             <pubDate>Fri, 30 Oct 2026 03:57:24 +0900</pubDate>
             <sparkle:version>3</sparkle:version>
