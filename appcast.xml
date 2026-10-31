@@ -4,6 +4,16 @@
         <title>TimeMachineEjector</title>
         <item>
             <title>1.0.2</title>
+            <pubDate>Sun, 01 Nov 2026 02:01:56 +0900</pubDate>
+            <sparkle:version>5</sparkle:version>
+            <sparkle:shortVersionString>1.0.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[- TimeMachineEjector is now signed with a Developer ID and notarized by Apple, so it opens without allowing it in System Settings > Privacy & Security.
+]]></description>
+            <enclosure url="https://github.com/wata/TimeMachineEjector/releases/download/1.0.2-5/TimeMachineEjector-1.0.2.zip" length="3495631" type="application/octet-stream" sparkle:edSignature="VmIl1dtmm/3Uq+fAs+BI64C3KYJqVGFpvtjtXP4lZ8AGWz1l1cTMjMIcMtHJsi1EOzPxotm33r6KIIqCzPPLAg=="/>
+        </item>
+        <item>
+            <title>1.0.2</title>
             <pubDate>Fri, 30 Oct 2026 16:18:13 +0900</pubDate>
             <sparkle:version>4</sparkle:version>
             <sparkle:shortVersionString>1.0.2</sparkle:shortVersionString>
