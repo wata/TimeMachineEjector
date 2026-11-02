@@ -156,6 +156,62 @@ final class TimeMachineEjectorTests: XCTestCase {
         XCTAssertFalse(status.canStartBackup)
     }
 
+    func testSymbolShowsBackupInProgress() {
+        let busy: [BackupDiskStatus] = [.startingBackup, .backingUp(progress: 0), .backingUp(progress: 100)]
+        let others: [BackupDiskStatus] = [.noDestination, .connected, .ejected, .ejectFailed, .notConnected]
+        for status in busy {
+            XCTAssertEqual(status.symbolName, "externaldrive.fill.badge.timemachine", "\(status)")
+        }
+        for status in others {
+            XCTAssertEqual(status.symbolName, "externaldrive.fill", "\(status)")
+        }
+    }
+
+    func testLatestBackupTitle() {
+        let locale = Locale(identifier: "en_US_POSIX")
+        let utc = TimeZone(identifier: "UTC")!
+        XCTAssertEqual(BackupDiskStatus.latestBackupTitle(Date(timeIntervalSince1970: 1_000_000), locale: locale, timeZone: utc), "Latest Backup: Jan 12, 1970 at 1:46\u{202F}PM")
+        XCTAssertTrue(BackupDiskStatus.latestBackupTitle(.now, locale: locale).hasPrefix("Latest Backup: Today"))
+    }
+
+    // MARK: - Schedule
+
+    private let lastBackup = Date(timeIntervalSince1970: 1_000_000)
+
+    func testScheduledBackupIsDueAfterInterval() {
+        let schedule = TimeMachine.Schedule(isAutomatic: true, interval: 3600, lastBackupDate: lastBackup)
+        XCTAssertFalse(schedule.isDue(at: lastBackup.addingTimeInterval(3599), lastAttempt: nil))
+        XCTAssertTrue(schedule.isDue(at: lastBackup.addingTimeInterval(3600), lastAttempt: nil))
+    }
+
+    func testScheduledBackupFollowsInterval() {
+        let daily = TimeMachine.Schedule(isAutomatic: true, interval: 86400, lastBackupDate: lastBackup)
+        XCTAssertFalse(daily.isDue(at: lastBackup.addingTimeInterval(3600 * 23), lastAttempt: nil))
+        XCTAssertTrue(daily.isDue(at: lastBackup.addingTimeInterval(86400), lastAttempt: nil))
+    }
+
+    func testScheduledBackupIsNotDueWhenAutomaticBackupsAreOff() {
+        let schedule = TimeMachine.Schedule(isAutomatic: false, interval: 3600, lastBackupDate: lastBackup)
+        XCTAssertFalse(schedule.isDue(at: lastBackup.addingTimeInterval(86400), lastAttempt: nil))
+    }
+
+    func testScheduledBackupIsNotDueWithoutLastBackup() {
+        let schedule = TimeMachine.Schedule(isAutomatic: true, interval: 3600, lastBackupDate: nil)
+        XCTAssertFalse(schedule.isDue(at: lastBackup, lastAttempt: nil))
+    }
+
+    func testScheduledBackupWaitsAnIntervalAfterLastAttempt() {
+        let schedule = TimeMachine.Schedule(isAutomatic: true, interval: 3600, lastBackupDate: lastBackup)
+        let attempt = lastBackup.addingTimeInterval(3600 * 5)
+        XCTAssertFalse(schedule.isDue(at: attempt.addingTimeInterval(3599), lastAttempt: attempt))
+        XCTAssertTrue(schedule.isDue(at: attempt.addingTimeInterval(3600), lastAttempt: attempt))
+    }
+
+    func testScheduledBackupIgnoresAttemptBeforeLastBackup() {
+        let schedule = TimeMachine.Schedule(isAutomatic: true, interval: 3600, lastBackupDate: lastBackup)
+        XCTAssertTrue(schedule.isDue(at: lastBackup.addingTimeInterval(3600), lastAttempt: lastBackup.addingTimeInterval(-60)))
+    }
+
     private func plist(_ body: String) -> Data {
         Data("""
             <?xml version="1.0" encoding="UTF-8"?>

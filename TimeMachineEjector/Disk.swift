@@ -30,7 +30,9 @@ enum Disk {
         }
 
         var isMounted: Bool {
-            guard let mountPoint else { return false }
+            guard let mountPoint else {
+                return false
+            }
             return !mountPoint.isEmpty
         }
     }
@@ -42,7 +44,9 @@ enum Disk {
     /// `target` はマウントポイント・ボリューム UUID・デバイス識別子のいずれでもよい。
     /// UUID ならアンマウント中でも、ディスクが接続されていれば情報が返る。
     static func info(for target: String) async -> Info? {
-        guard let result = await Command.diskutil("info", "-plist", target), result.isSuccess else { return nil }
+        guard let result = await Command.diskutil("info", "-plist", target), result.isSuccess else {
+            return nil
+        }
         return parseInfo(result.output)
     }
 
@@ -52,13 +56,17 @@ enum Disk {
         guard
             let store = info.physicalStores?.first,
             let storeInfo = await self.info(for: store.deviceIdentifier)
-        else { return info.parentWholeDisk }
+        else {
+            return info.parentWholeDisk
+        }
         return storeInfo.parentWholeDisk
     }
 
-    /// 物理的な取り出しはしない。ディスクを挿したままにしておけば Back Up Now でマウントし直せるため。
+    /// 物理的な取り出しはしない。ディスクを挿したままにしておけば Back Up Now やスケジュールのバックアップでマウントし直せるため。
     static func unmountDisk(_ wholeDisk: String) async -> Bool {
-        guard let result = await Command.diskutil("unmountDisk", wholeDisk) else { return false }
+        guard let result = await Command.diskutil("unmountDisk", wholeDisk) else {
+            return false
+        }
         if !result.isSuccess {
             Logger.app.error("diskutil unmountDisk \(wholeDisk, privacy: .public) failed (\(result.exitStatus)): \(result.errorOutput, privacy: .public)")
         }
@@ -66,7 +74,9 @@ enum Disk {
     }
 
     static func mount(_ volumeUUID: String) async -> Bool {
-        guard let result = await Command.diskutil("mount", volumeUUID) else { return false }
+        guard let result = await Command.diskutil("mount", volumeUUID) else {
+            return false
+        }
         if !result.isSuccess {
             Logger.app.error("diskutil mount \(volumeUUID, privacy: .public) failed (\(result.exitStatus)): \(result.errorOutput, privacy: .public)")
         }

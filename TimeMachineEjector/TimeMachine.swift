@@ -30,8 +30,34 @@ enum TimeMachine {
         let percent: Double?
 
         var progress: Int? {
-            guard let percent, (0...1).contains(percent) else { return nil }
+            guard let percent, (0...1).contains(percent) else {
+                return nil
+            }
             return Int((percent * 100).rounded(.down))
+        }
+    }
+
+    /// Time Machine の自動バックアップの設定と、宛先に最後にバックアップした時刻。
+    struct Schedule: Equatable {
+        /// 頻度を変えていない（毎時）とき、設定に AutoBackupInterval が無い
+        static let defaultInterval: TimeInterval = 3600
+
+        let isAutomatic: Bool
+        let interval: TimeInterval
+        let lastBackupDate: Date?
+
+        /// `lastAttempt` はこのアプリが前回バックアップを始めようとした時刻。
+        /// マウントや開始に失敗しても、次の間隔までは繰り返さない。
+        /// 最後のバックアップ時刻が分からないときは、設定を読めていない可能性があるので勝手に始めない。
+        func isDue(at date: Date, lastAttempt: Date?) -> Bool {
+            guard
+                isAutomatic,
+                let lastBackupDate
+            else {
+                return false
+            }
+            let base = max(lastBackupDate, lastAttempt ?? .distantPast)
+            return base.addingTimeInterval(interval) <= date
         }
     }
 
@@ -52,23 +78,45 @@ enum TimeMachine {
     }
 
     static func destinations() async -> [Destination]? {
-        guard let result = await Command.tmutil("destinationinfo", "-X"), result.isSuccess else { return nil }
+        guard let result = await Command.tmutil("destinationinfo", "-X"), result.isSuccess else {
+            return nil
+        }
         return parseDestinations(result.output)
     }
 
     /// 宛先を複数登録しているときは、直近に使われたものを表示の対象にする。
     static func currentDestination() async -> Destination? {
-        guard let destinations = await destinations() else { return nil }
+        guard let destinations = await destinations() else {
+            return nil
+        }
         return destinations.first { $0.lastDestination == 1 } ?? destinations.first
     }
 
     static func status() async -> Status? {
-        guard let result = await Command.tmutil("status", "-X"), result.isSuccess else { return nil }
+        guard let result = await Command.tmutil("status", "-X"), result.isSuccess else {
+            return nil
+        }
         return parseStatus(result.output)
     }
 
-    static func startBackup() async {
-        guard let result = await Command.tmutil("startbackup"), !result.isSuccess else { return }
+    /// /Library/Preferences/com.apple.TimeMachine.plist はファイルとしては読めない（TCC）が、cfprefsd 経由なら一般ユーザーでも読める。
+    /// SnapshotDates はディスクをアンマウントしていても残っている。
+    static func schedule(for destinationID: String) -> Schedule {
+        let defaults = UserDefaults(suiteName: "com.apple.TimeMachine")
+        let interval = defaults?.double(forKey: "AutoBackupInterval") ?? 0
+        let destination = (defaults?.array(forKey: "Destinations") as? [[String: Any]])?.first { $0["DestinationID"] as? String == destinationID }
+        return Schedule(
+            isAutomatic: defaults?.bool(forKey: "AutoBackup") ?? false,
+            interval: interval > 0 ? interval : Schedule.defaultInterval,
+            lastBackupDate: (destination?["SnapshotDates"] as? [Date])?.max()
+        )
+    }
+
+    /// `isAutomatic` なら `--auto` で、システムのスケジュールのバックアップに近いモードで始める。
+    /// その場合 backupd が状況（電源など）を見て始めないことがある。
+    static func startBackup(isAutomatic: Bool) async {
+        let result = isAutomatic ? await Command.tmutil("startbackup", "--auto") : await Command.tmutil("startbackup")
+        guard let result, !result.isSuccess else { return }
         Logger.app.error("tmutil startbackup failed (\(result.exitStatus)): \(result.errorOutput, privacy: .public)")
     }
 }
