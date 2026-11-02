@@ -3,6 +3,18 @@
     <channel>
         <title>TimeMachineEjector</title>
         <item>
+            <title>1.1.0</title>
+            <pubDate>Tue, 03 Nov 2026 00:53:14 +0900</pubDate>
+            <sparkle:version>6</sparkle:version>
+            <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[- Scheduled backups keep running while the disk is ejected: when a backup is due on Time Machine's schedule, the disk is mounted, backed up, and ejected again
+- The menu shows when the latest backup was
+- The menu bar icon is now a disk and gets a Time Machine badge while a backup is running, so you can tell when not to unplug it
+]]></description>
+            <enclosure url="https://github.com/wata/TimeMachineEjector/releases/download/1.1.0/TimeMachineEjector-1.1.0.zip" length="3528851" type="application/octet-stream" sparkle:edSignature="Jo+/Z3CxARjukLvMAqJWrhiOv0G7aCzczS4/46Son9WFM5HXNlilmJRbP9qgvro8hmc0UPZDODEUcdNUZsZ1Bg=="/>
+        </item>
+        <item>
             <title>1.0.2</title>
             <pubDate>Sun, 01 Nov 2026 02:01:56 +0900</pubDate>
             <sparkle:version>5</sparkle:version>
