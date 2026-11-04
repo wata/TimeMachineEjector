@@ -33,6 +33,12 @@ macOS 13 or later.
 
 Download the latest pre-built application binary from Releases page and move it to `/Applications`. TimeMachineEjector checks for updates automatically, and you can also choose Check for Updates… from its menu.
 
+Or install it with [Homebrew](https://brew.sh):
+
+```sh
+brew install --cask wata/tap/timemachineejector
+```
+
 Open it once and turn on Launch at Login from the menu bar icon. There is nothing else to set up; it works with the backup disk you already use in Time Machine.
 
 The disk is unmounted, not powered off, so it can be mounted again for the next backup. Other volumes on the same disk are unmounted too, just like ejecting it in Finder.
