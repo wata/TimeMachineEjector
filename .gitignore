@@ -91,3 +91,6 @@ iOSInjectionProject/
 
 # Release archives
 dist/
+
+# Local notes
+tasks/
